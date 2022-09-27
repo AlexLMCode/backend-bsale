@@ -1,0 +1,143 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "PRODUCTS API",
+    "description": "Api services to obtain products information"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/api/products": {
+      "get": {
+        "description": "Returns all the products",
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "query",
+            "description": "The product name that will be searched in the database",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "categoryId",
+            "in": "query",
+            "description": "The category of the products to be searched",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/ResponseProduct"
+            }
+          }
+        }
+      }
+    },
+    "/api/categories": {
+      "get": {
+        "description": "Returns all the products",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/ResponseCategory"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ResponseProduct": {
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int64",
+          "example": 200
+        },
+        "message": {
+          "type": "string",
+          "example": "Success"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int32",
+                "example": 2
+              },
+              "name": {
+                "type": "string",
+                "example": "Papas"
+              },
+              "price": {
+                "type": "integer",
+                "format": "int64",
+                "example": 1200
+              },
+              "discount": {
+                "type": "integer",
+                "format": "int64",
+                "example": 20
+              },
+              "url_image": {
+                "type": "string"
+              },
+              "category": {
+                "type": "integer",
+                "example": 2
+              }
+            }
+          }
+        }
+      },
+      "xml": "Response Product"
+    },
+    "ResponseCategory": {
+      "type": "object",
+      "properties": {
+        "statusCode": {
+          "type": "integer",
+          "format": "int64",
+          "example": 200
+        },
+        "message": {
+          "type": "string",
+          "example": "Success"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int32",
+                "example": 2
+              },
+              "name": {
+                "type": "string",
+                "example": "Cerveza"
+              }
+            }
+          }
+        }
+      },
+      "xml": "Response Category"
+    }
+  }
+}
