@@ -13,8 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const response_1 = __importDefault(require("../common/response"));
+const categories_1 = __importDefault(require("../services/categories"));
 const getCategories = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const data = yield categories_1.default.getCategoriesFromRepository();
+        response.json(new response_1.default(200, 'Success', data, undefined));
     }
     catch (error) {
         response

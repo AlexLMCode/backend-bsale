@@ -16,10 +16,12 @@ const response_1 = __importDefault(require("../common/response"));
 const products_1 = __importDefault(require("../services/products"));
 const getProducts = (request, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const data = yield products_1.default.getProductFromRepository();
+        const { productName, categoryId } = request.query;
+        const data = yield products_1.default.getProductFromRepository(productName, +categoryId);
         return res.json(new response_1.default(200, 'Success', data, undefined));
     }
     catch (error) {
+        console.log(error);
         return res
             .status(500)
             .json(new response_1.default(500, error.message, undefined, error));
